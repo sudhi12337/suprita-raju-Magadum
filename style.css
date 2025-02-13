@@ -1,26 +1,26 @@
-body{
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background-color: gray;
-}
-nav{
-    background: black;
-    padding: 10px;
-
-}
-nav a{
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
+*{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-size: 20px;
 }
 .container{
-    margin: 50px auto;
-    max-width: 600px;
-    background: white;
+    background-color: blueviolet;
+    text-align: center;
+    
+}
+#addtask{
+    color: aqua;
     padding: 20px;
-    box-shadow: 0px opx 10px gray;
-    display: flex;
-    justify-content: space-evenly;
+    margin: 20px;
+}
+#taskinput{
+    color: brown;
+    padding: 18px;
+    margin: 20px;
+
+}
+#tasklist{
+    color: goldenrod;
+    padding: 18px;
+    margin: 20px;
+
 }

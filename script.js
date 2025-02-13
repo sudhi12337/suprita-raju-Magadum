@@ -1,42 +1,47 @@
-function showAlert(){
-    alert('hello! the button is clicked,this js class')
+// Todo App
+
+document.addEventListener("Todos",init);
+
+function init(){
+    loadTasks();
 
 }
+function loadTasks(){
+    const tasks = JSON.parse(localStorage.getItem("tasks"))||[];
+    tasks.forEach(task => addTaskToDOM(task));
 
-function changetext(){
-    document.getElementById('text').innerHTML="text changed" 
-}
-
-function handleclick(){
-    document.getElementById('clickmessage').innerHTML="button clicked" 
-}
-function validateform(){
-    let name=document.getElementById('name').Value;
-    if(name==''){
-        alert('please enter your name.');
-        return false;
+        
     }
-    return true;
+function addTask(){
+    const taskInput = document.getElementById("taskInput");
+    const task = taskInput.value.trim();
+    if(task == "") return;
+
+    addTaskToDOM(task);
+    saveTask(task);
+    taskInput.value="";
+}
+function addTaskToDOM(task){
+    const taskList = document.getElementById("taskList");
+    const li = document.createElement("li");
+    li.innerHTML = `${task} <button class= "remove-btn">Remove</button>`
+    taskList.appendChild(li);
+
+    li.querySelector(".remove-btn").addEventListener("click",function(){
+        removeTask(task,li);
+    })
+}
+function saveTask(task){
+    const tasks = JSON.parse(localStorage.getItem("tasks"))||[];
+    tasks.push(task);
+    localStorage.setItem("tasks",JSON.stringify(tasks));
 
 }
-function checknumber(){
-    let num=parseInt(document.getElementById('numberinput').value);
-    let result=num>10 ? 'greater than 10' : '10 or less';
-    document.getElementById('numberresult').innerHTML=result;
 
-
-}
-function checkage(){
-    let age=parseInt(document.getElementById('ageinput').value);
-    if(age >= 18)
-    document.getElementById('ageresult').innerHTML='you are an adult';
-else{
-    document.getElementById('ageresult').innerHTML='you are a minor';
-}
-}
-function displayarrayitem(){
-    let item=['appale','banana','charry','date','elderbarry'];
-    let index=parseInt(document.getElementById('arrayindex').value);
-    let result=items[index] || 'invalid index';
-    document.getElementById('arrayresult').innerHTML=result;
+function removeTask(task,element){
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    tasks = tasks.filter(t => t!==task);
+    localStorage.setItem("tasks",JSON.stringify(tasks));
+    element.remove();
+    
 }
